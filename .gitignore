@@ -1,0 +1,20 @@
+.env
+node_modules/
+dist/
+target/
+.angular/
+.idea/
+.vscode/
+*.log
+postgres-data/
+cat > .gitignore << 'EOF'
+node_modules/
+dist/
+build/
+target/
+.idea/
+.vscode/
+.env.local
+*.log
+coverage/
+.DS_Store

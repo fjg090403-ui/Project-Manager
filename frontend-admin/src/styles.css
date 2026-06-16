@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-page: 248 250 252;
+  --theme-surface: 255 255 255;
+  --theme-elevated: 241 245 249;
+  --theme-line: 228 231 236;
+  --theme-text: 16 24 40;
+  --theme-muted: 102 112 133;
+  --theme-glow: 47 111 237;
+  background: rgb(var(--theme-page));
+  color: rgb(var(--theme-text));
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --theme-page: 12 16 23;
+  --theme-surface: 18 24 33;
+  --theme-elevated: 28 36 48;
+  --theme-line: 48 58 72;
+  --theme-text: 238 242 247;
+  --theme-muted: 151 161 176;
+  --theme-glow: 94 129 172;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgb(var(--theme-glow) / .10), transparent 30rem),
+    linear-gradient(180deg, rgb(var(--theme-page)) 0%, rgb(var(--theme-elevated) / .55) 100%);
+}
+
+@layer components {
+  .topbar {
+    @apply sticky top-0 z-30 flex min-h-16 items-center justify-between border-b border-line bg-surface/85 px-4 backdrop-blur-xl sm:px-8;
+  }
+
+  .brand {
+    @apply inline-flex items-center gap-2 text-sm font-extrabold tracking-tight text-text;
+  }
+
+  .brand::before {
+    content: "";
+    @apply h-8 w-8 rounded-xl bg-text shadow-soft;
+  }
+
+  .nav-actions {
+    @apply flex items-center gap-1 rounded-2xl border border-line bg-elevated/70 p-1;
+  }
+
+  .nav-actions a,
+  .nav-actions button {
+    @apply rounded-xl px-3 py-2 text-sm font-semibold text-muted transition hover:bg-surface hover:text-text hover:shadow-sm;
+  }
+
+  .nav-actions button {
+    @apply border-0 bg-transparent;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-8 lg:py-8;
+  }
+
+  .auth-panel {
+    @apply mx-auto mt-12 max-w-md rounded-xl2 border border-line bg-surface p-8 shadow-lift;
+  }
+
+  .form {
+    @apply grid gap-3;
+  }
+
+  .form input {
+    @apply h-11 rounded-xl border border-line bg-surface px-3.5 text-sm text-text outline-none transition placeholder:text-muted/60 focus:border-brand-500 focus:ring-4 focus:ring-brand-100/70;
+  }
+
+  .form button,
+  button[type="submit"] {
+    @apply inline-flex items-center justify-center rounded-xl bg-text px-4 py-2.5 text-sm font-semibold text-surface shadow-soft transition hover:-translate-y-0.5;
+  }
+
+  .error {
+    @apply rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-medium text-red-700;
+  }
+
+  .hero {
+    @apply mb-6 rounded-xl2 border border-line bg-surface p-6 shadow-soft;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-normal text-brand-600;
+  }
+
+  .hero h1,
+  h1 {
+    @apply text-3xl font-bold tracking-tight text-text;
+  }
+
+  .hero p:not(.eyebrow) {
+    @apply mt-3 max-w-xl text-sm leading-6 text-muted;
+  }
+
+  .stats {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .stats article {
+    @apply rounded-xl2 border border-line bg-surface p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .stats span {
+    @apply block text-3xl font-extrabold text-text;
+  }
+
+  .stats p {
+    @apply mt-2 text-sm font-medium text-muted;
+  }
+
+  .table {
+    @apply mt-5 grid gap-3;
+  }
+
+  .row {
+    @apply grid items-center gap-3 rounded-xl2 border border-line bg-surface p-4 text-sm text-muted shadow-soft transition hover:-translate-y-0.5 hover:border-brand-100 hover:shadow-lift md:grid-cols-3;
+  }
+
+  .row strong {
+    @apply font-bold text-text;
+  }
+
+  .empty-state {
+    @apply mt-5 rounded-xl2 border border-dashed border-line bg-surface/70 p-10 text-center text-sm text-muted;
+  }
+
+  .skeleton-grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .skeleton {
+    @apply h-28 animate-pulse rounded-xl2 bg-elevated;
+  }
+
+  .theme-toggle {
+    @apply flex items-center gap-1 rounded-2xl border border-line bg-surface/80 p-1 shadow-sm;
+  }
+
+  .theme-toggle button {
+    @apply grid h-8 w-8 place-items-center rounded-xl text-xs font-bold text-muted transition hover:bg-elevated hover:text-text;
+  }
+
+  .theme-toggle button.active {
+    @apply bg-elevated text-text shadow-sm;
+  }
+}
